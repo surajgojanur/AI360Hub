@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Generative AI Demo</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #inputForm {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Google Generative AI</h1>
+        
+        <!-- ... (other HTML code) ... -->
+
+<form id="inputForm" class="mb-4">
+    <div class="form-group">
+        <label for="prompt">Enter your prompt:</label>
+        <textarea class="form-control" id="prompt" name="prompt" rows="4"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="generateText()">Generate mnemonic </button>
+</form>
+
+<!-- ... (other HTML code) ... -->
+
+
+        <div id="output" class="jumbotron"></div>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        async function generateText() {
+            const prompt = document.getElementById('prompt').value;
+            
+            // Make a POST request to the server with the user's input
+            const response = await fetch('/generateText', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input: prompt })
+            });
+
+            // Get the generated text from the server's response
+            const generatedText = await response.text();
+
+            // Display the generated text in the output section
+            document.getElementById('output').innerText = generatedText;
+        }
+    </script>
+</body>
+</html>

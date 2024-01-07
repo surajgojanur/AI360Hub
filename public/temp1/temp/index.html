@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Generative AI Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #inputForm {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Generative AI Demo</h1>
+    
+    <form id="inputForm">
+        <label for="prompt">Enter your prompt:</label><br>
+        <input type="text" id="prompt" name="prompt"><br><br>
+        <button type="button" onclick="generateText()">Generate Text</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        async function generateText() {
+            const prompt = document.getElementById('prompt').value;
+            
+            // Make a POST request to the server with the user's input
+            const response = await fetch('/generateText', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input: prompt })
+            });
+
+            // Get the generated text from the server's response
+            const generatedText = await response.text();
+
+            // Display the generated text in the output section
+            document.getElementById('output').innerText = generatedText;
+        }
+    </script>
+</body>
+</html>
