@@ -11,9 +11,9 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="">
+  <link rel="shortcut icon" href="images/logo.png" type="">
 
-  <title> Finexo </title>
+  <title> AI360HUB </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -50,7 +50,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
             <span>
-              Finexo
+              AI360HUB
             </span>
           </a>
 
@@ -96,10 +96,11 @@
 
 <form id="inputForm" class="mb-4">
 <div class="form-group">
-    <h3><label for="prompt">Convert into Professional tone:</label></h3>
+  <h6>Craft diverse tones effortlessly! Transform your messages into professional, casual, polite, funny, social media-friendly, and witty tones with a simple click."  </h6>
+    
     <textarea class="form-control" id="prompt" name="prompt" rows="2"></textarea>
 </div>
-<button type="button" class="btn btn-primary" onclick="generateProfessional()">Professional tone</button>
+<button type="button" class="btn btn-primary" onclick="generateProfessional()">Professional tone</button>     
 <button type="button" class="btn btn-primary" onclick="generateCasual()">Casual tone</button>
 <button type="button" class="btn btn-primary" onclick="generatePolite()">Polite tone</button>
 <button type="button" class="btn btn-primary" onclick="generateFunny()">Funny tone</button>
@@ -117,7 +118,7 @@
 <script>
   async function generateProfessional() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into professional tone";
+const additionalString = ":Recompose this text message into professional tone ";
 const combinedPrompt = prompt + ' ' + additionalString;
 
       // Make a POST request to the server with the user's input
@@ -165,7 +166,7 @@ const combinedPrompt = prompt + ' ' + additionalString;
 <script>
   async function generatePolite() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into professional tone";
+const additionalString = ":Recompose this text message into Polite tone";
 const combinedPrompt = prompt + ' ' + additionalString;
 
       // Make a POST request to the server with the user's input
@@ -189,7 +190,7 @@ const combinedPrompt = prompt + ' ' + additionalString;
 <script>
   async function generateFunny() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into professional tone";
+const additionalString = ":Recompose this text message into Funny tone, and keep it short";
 const combinedPrompt = prompt + ' ' + additionalString;
 
       // Make a POST request to the server with the user's input
@@ -213,7 +214,7 @@ const combinedPrompt = prompt + ' ' + additionalString;
 <script>
   async function generateSocial() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into professional tone";
+const additionalString = ":Recompose this text message into Social post for socail media tone, and keep it short";
 const combinedPrompt = prompt + ' ' + additionalString;
 
       // Make a POST request to the server with the user's input
@@ -237,7 +238,7 @@ const combinedPrompt = prompt + ' ' + additionalString;
 <script>
   async function generateWitty() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into professional tone";
+const additionalString = ":Recompose this text message into Witty tone , and kepp it short";
 const combinedPrompt = prompt + ' ' + additionalString;
 
       // Make a POST request to the server with the user's input
@@ -259,6 +260,8 @@ const combinedPrompt = prompt + ' ' + additionalString;
 
 
   
+<!-- info section -->
+
 <section class="info_section layout_padding2">
   <div class="container">
     <div class="row">
@@ -289,19 +292,20 @@ const combinedPrompt = prompt + ' ' + additionalString;
           </div>
         </div>
         <div class="info_social">
-          <a href="">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
+          <a href="https://www.facebook.com/suraj.gojanur">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
           </a>
-          <a href="">
-            <i class="fa fa-twitter" aria-hidden="true"></i>
+          <a href="https://twitter.com/surajgojanur1">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
           </a>
-          <a href="">
-            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          <a href="http://www.linkedin.com/in/suraj-gojanur-3792731b5">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
           </a>
-          <a href="">
-            <i class="fa fa-instagram" aria-hidden="true"></i>
+          <a href="https://www.instagram.com/suraj_a_g/">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
           </a>
-        </div>
+      </div>
+      
       </div>
       <div class="col-md-6 col-lg-3 info_col">
         <div class="info_detail">
@@ -353,6 +357,7 @@ const combinedPrompt = prompt + ' ' + additionalString;
 </section>
 
 <!-- end info section -->
+
 
 
 
