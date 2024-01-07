@@ -118,7 +118,7 @@
 <script>
   async function generateProfessional() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into professional tone ";
+const additionalString = ":Recompose this text message into professional tone , and kepp it short";
 const combinedPrompt = prompt + ' ' + additionalString;
 
       // Make a POST request to the server with the user's input
@@ -142,7 +142,7 @@ const combinedPrompt = prompt + ' ' + additionalString;
 <script>
 async function generateCasual() {
   const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into Casual tone";
+const additionalString = ":Recompose this text message into Casual tone , and kepp it short";
 const combinedPrompt = prompt + ' ' + additionalString;
 
     // Make a POST request to the server with the user's input
@@ -166,7 +166,7 @@ const combinedPrompt = prompt + ' ' + additionalString;
 <script>
   async function generatePolite() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into Polite tone";
+const additionalString = ":Recompose this text message into Polite tone ,and kepp it short";
 const combinedPrompt = prompt + ' ' + additionalString;
 
       // Make a POST request to the server with the user's input
