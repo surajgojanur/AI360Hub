@@ -32,6 +32,12 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 
+  <!-- Add your loading icon styles -->
+  <style>
+    #loadingIcon {
+      display: none;
+    }
+  </style>
 </head>
 
 <body class="sub_page">
@@ -94,40 +100,51 @@
     
     <!-- ... (other HTML code) ... -->
 
-<form id="inputForm" class="mb-4">
-<div class="form-group">
-    <label for="prompt">Provide more details or clarify the request to write an email :</label>
-    <textarea class="form-control" id="prompt" name="prompt" rows="4" placeholder="To Whom and Reason for the mail"></textarea>
+    <form id="inputForm" class="mb-4">
+      <div class="form-group">
+        <label for="prompt">Provide more details or clarify the request to write an email:</label>
+        <textarea class="form-control" id="prompt" name="prompt" rows="4" placeholder="To Whom and Reason for the mail"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="generateText()">Generate Email</button>
+    </form>
+
+<div id="loadingIcon">
+  <!-- Add your loading icon here (e.g., spinner, loading gif) -->
+  Loading...
 </div>
-<button type="button"  class="btn btn-primary" onclick="generateText()">Generate Email </button>
-</form>
 
-<!-- ... (other HTML code) ... -->
-
-
-    <div id="output" class="jumbotron"></div>
+<div id="output" class="jumbotron"></div>
 </div>
+
 
 <script>
   async function generateText() {
     const prompt = document.getElementById('prompt').value;
-const additionalString = ":Compose an email using simple, concise language for better understanding.";
-const combinedPrompt = prompt + ' ' + additionalString;
+    const additionalString = ":Compose an email using simple, concise language for better understanding.";
+    const combinedPrompt = prompt + ' ' + additionalString;
 
-      // Make a POST request to the server with the user's input
-      const response = await fetch('/generateText', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ input: combinedPrompt })
-      });
+    // Show loading icon
+    document.getElementById('loadingIcon').style.display = 'block';
 
-      // Get the generated text from the server's response
-      const generatedText = await response.text();
+    // Make a POST request to the server with the user's input
+    const response = await fetch('/generateText', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        input: combinedPrompt
+      })
+    });
 
-      // Display the generated text in the output section
-      document.getElementById('output').innerText = generatedText;
+    // Hide loading icon after the response arrives
+    document.getElementById('loadingIcon').style.display = 'none';
+
+    // Get the generated text from the server's response
+    const generatedText = await response.text();
+
+    // Display the generated text in the output section
+    document.getElementById('output').innerText = generatedText;
   }
 </script>
 

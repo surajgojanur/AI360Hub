@@ -85,6 +85,11 @@
           </div>
         </nav>
       </div>
+      <style>
+        #loadingIcon {
+          display: none;
+        }
+      </style>
     </header>
     <!-- end header section -->
   </div>
@@ -93,171 +98,130 @@
     <h1 class="mt-4 mb-4">TONE BLENDR</h1>
     
     <!-- ... (other HTML code) ... -->
+    <form id="inputForm" class="mb-4">
+      <div class="form-group">
+        <h6>Craft diverse tones effortlessly! Transform your messages into professional, casual, polite, funny, social media-friendly, and witty tones with a simple click." </h6>
+        <textarea class="form-control" id="prompt" name="prompt" rows="2" placeholder="Hi let's have dinner Tonight"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="generateProfessional()">Professional tone</button>
+      <button type="button" class="btn btn-primary" onclick="generateCasual()">Casual tone</button>
+      <button type="button" class="btn btn-primary" onclick="generatePolite()">Polite tone</button>
+      <button type="button" class="btn btn-primary" onclick="generateFunny()">Funny tone</button>
+      <button type="button" class="btn btn-primary" onclick="generateSocial()">Social Post</button>
+      <button type="button" class="btn btn-primary" onclick="generateWitty()">Witty tone</button>
+    </form>
 
-<form id="inputForm" class="mb-4">
-<div class="form-group">
-  <h6>Craft diverse tones effortlessly! Transform your messages into professional, casual, polite, funny, social media-friendly, and witty tones with a simple click."  </h6>
-    
-    <textarea class="form-control" id="prompt" name="prompt" rows="2" placeholder="Hi let's have dinner Tonight"></textarea>
-</div>
-<button type="button" class="btn btn-primary" onclick="generateProfessional()">Professional tone</button>     
-<button type="button" class="btn btn-primary" onclick="generateCasual()">Casual tone</button>
-<button type="button" class="btn btn-primary" onclick="generatePolite()">Polite tone</button>
-<button type="button" class="btn btn-primary" onclick="generateFunny()">Funny tone</button>
-<button type="button" class="btn btn-primary" onclick="generateSocial()">Social Post</button>
-<button type="button" class="btn btn-primary" onclick="generateWitty()">Witty tone</button>
-</form>
+    <div id="loadingIcon">
+      <!-- Add your loading icon here (e.g., spinner, loading gif) -->
+      Loading...
+    </div>
+
+    <div id="output" class="jumbotron"></div>
+  </div>
 
 <!-- ... (other HTML code) ... -->
 
 
     <div id="output" class="jumbotron"></div>
 </div>
-
-<!-- Professional -->
 <script>
-  async function generateProfessional() {
-    const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into professional tone , and kepp it short";
-const combinedPrompt = prompt + ' ' + additionalString;
+    async function generateProfessional() {
+      showLoadingIcon();
+      const prompt = document.getElementById('prompt').value;
+      const additionalString = ":Recompose this text message into professional tone , and kepp it short";
+      const combinedPrompt = prompt + ' ' + additionalString;
+      await generateTextAndDisplay(combinedPrompt);
+    }
+  </script>
 
+  <!-- Casual -->
+  <script>
+    async function generateCasual() {
+      showLoadingIcon();
+      const prompt = document.getElementById('prompt').value;
+      const additionalString = ":Recompose this text message into Casual tone , and kepp it short";
+      const combinedPrompt = prompt + ' ' + additionalString;
+      await generateTextAndDisplay(combinedPrompt);
+    }
+  </script>
+
+  <!-- Polite -->
+  <script>
+    async function generatePolite() {
+      showLoadingIcon();
+      const prompt = document.getElementById('prompt').value;
+      const additionalString = ":Recompose this text message into Polite tone ,and kepp it short";
+      const combinedPrompt = prompt + ' ' + additionalString;
+      await generateTextAndDisplay(combinedPrompt);
+    }
+  </script>
+
+  <!-- Funny -->
+  <script>
+    async function generateFunny() {
+      showLoadingIcon();
+      const prompt = document.getElementById('prompt').value;
+      const additionalString = ":Recompose this text message into Funny tone, and keep it short";
+      const combinedPrompt = prompt + ' ' + additionalString;
+      await generateTextAndDisplay(combinedPrompt);
+    }
+  </script>
+
+  <!-- Social -->
+  <script>
+    async function generateSocial() {
+      showLoadingIcon();
+      const prompt = document.getElementById('prompt').value;
+      const additionalString = ":Recompose this text message into Social post for social media tone, and keep it short";
+      const combinedPrompt = prompt + ' ' + additionalString;
+      await generateTextAndDisplay(combinedPrompt);
+    }
+  </script>
+
+  <!-- Witty -->
+  <script>
+    async function generateWitty() {
+      showLoadingIcon();
+      const prompt = document.getElementById('prompt').value;
+      const additionalString = ":Recompose this text message into Witty tone , and kepp it short";
+      const combinedPrompt = prompt + ' ' + additionalString;
+      await generateTextAndDisplay(combinedPrompt);
+    }
+  </script>
+
+  <script>
+    async function generateTextAndDisplay(combinedPrompt) {
       // Make a POST request to the server with the user's input
       const response = await fetch('/generateText', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ input: combinedPrompt })
-      });
-
-      // Get the generated text from the server's response
-      const generatedText = await response.text();
-
-      // Display the generated text in the output section
-      document.getElementById('output').innerText = generatedText;
-  }
-</script>
-
-<!-- Casual -->
-<script>
-async function generateCasual() {
-  const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into Casual tone , and kepp it short";
-const combinedPrompt = prompt + ' ' + additionalString;
-
-    // Make a POST request to the server with the user's input
-    const response = await fetch('/generateText', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ input: combinedPrompt })
-    });
-
-    // Get the generated text from the server's response
-    const generatedText = await response.text();
-
-    // Display the generated text in the output section
-    document.getElementById('output').innerText = generatedText;
-}
-</script>
-
-<!-- Polite -->
-<script>
-  async function generatePolite() {
-    const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into Polite tone ,and kepp it short";
-const combinedPrompt = prompt + ' ' + additionalString;
-
-      // Make a POST request to the server with the user's input
-      const response = await fetch('/generateText', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ input: combinedPrompt })
+        body: JSON.stringify({
+          input: combinedPrompt
+        })
       });
+
+      // Hide loading icon after the response arrives
+      hideLoadingIcon();
 
       // Get the generated text from the server's response
       const generatedText = await response.text();
 
       // Display the generated text in the output section
       document.getElementById('output').innerText = generatedText;
-  }
-</script>
+    }
 
-<!-- Funny -->
-<script>
-  async function generateFunny() {
-    const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into Funny tone, and keep it short";
-const combinedPrompt = prompt + ' ' + additionalString;
+    function showLoadingIcon() {
+      document.getElementById('loadingIcon').style.display = 'block';
+    }
 
-      // Make a POST request to the server with the user's input
-      const response = await fetch('/generateText', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ input: combinedPrompt })
-      });
+    function hideLoadingIcon() {
+      document.getElementById('loadingIcon').style.display = 'none';
+    }
+  </script>
 
-      // Get the generated text from the server's response
-      const generatedText = await response.text();
-
-      // Display the generated text in the output section
-      document.getElementById('output').innerText = generatedText;
-  }
-</script>
-
-<!-- Social -->
-<script>
-  async function generateSocial() {
-    const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into Social post for socail media tone, and keep it short";
-const combinedPrompt = prompt + ' ' + additionalString;
-
-      // Make a POST request to the server with the user's input
-      const response = await fetch('/generateText', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ input: combinedPrompt })
-      });
-
-      // Get the generated text from the server's response
-      const generatedText = await response.text();
-
-      // Display the generated text in the output section
-      document.getElementById('output').innerText = generatedText;
-  }
-</script>
-
-<!-- Witty -->
-<script>
-  async function generateWitty() {
-    const prompt = document.getElementById('prompt').value;
-const additionalString = ":Recompose this text message into Witty tone , and kepp it short";
-const combinedPrompt = prompt + ' ' + additionalString;
-
-      // Make a POST request to the server with the user's input
-      const response = await fetch('/generateText', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ input: combinedPrompt })
-      });
-
-      // Get the generated text from the server's response
-      const generatedText = await response.text();
-
-      // Display the generated text in the output section
-      document.getElementById('output').innerText = generatedText;
-  }
-</script>
-
+  <!-- ... (other scripts) ... -->
 
   
 <!-- info section -->

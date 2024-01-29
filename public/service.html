@@ -32,6 +32,11 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 
+  <style>
+    #loadingIcon {
+      display: none;
+    }
+  </style>
 </head>
 
 <body class="sub_page">
@@ -94,41 +99,63 @@
     <h1 class="mt-4 mb-4">ANSWER2ACRO</h1>
     
     <!-- ... (other HTML code) ... -->
+    <form id="inputForm" class="mb-4">
+      <div class="form-group">
+        <label for="prompt">Unleash Creative Mnemonics with Google's AI Text Generation:</label>
+        <textarea class="form-control" id="prompt" name="prompt" rows="4"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="generateText()">Generate mnemonic </button>
+    </form>
 
-<form id="inputForm" class="mb-4">
-<div class="form-group">
-    <label for="prompt">Unleash Creative Mnemonics with Google's AI Text Generation:</label>
-    <textarea class="form-control" id="prompt" name="prompt" rows="4"></textarea>
-</div>
-<button type="button" class="btn btn-primary" onclick="generateText()">Generate mnemonic </button>
-</form>
+    <!-- Loading icon -->
+    <div id="loadingIcon">
+      <!-- Add your loading icon here (e.g., spinner, loading gif) -->
+      Loading...
+    </div>
+
+    <div id="output" class="jumbotron"></div>
+  </div>
+
 
 <!-- ... (other HTML code) ... -->
 
 
     <div id="output" class="jumbotron"></div>
 </div>
-
 <script>
   async function generateText() {
+    showLoadingIcon();
     const prompt = document.getElementById('prompt').value;
-const additionalString = "Make this easier to remember, small and simple, but clear.,try to make a word or sentence of all points to remember easily :acronym:";
-const combinedPrompt = prompt + ' ' + additionalString;
+    const additionalString = "Make this easier to remember, small and simple, but clear.,try to make a word or sentence of all points to remember easily :acronym:";
+    const combinedPrompt = prompt + ' ' + additionalString;
 
-      // Make a POST request to the server with the user's input
-      const response = await fetch('/generateText', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ input: combinedPrompt })
-      });
+    // Make a POST request to the server with the user's input
+    const response = await fetch('/generateText', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        input: combinedPrompt
+      })
+    });
 
-      // Get the generated text from the server's response
-      const generatedText = await response.text();
+    // Hide loading icon after the response arrives
+    hideLoadingIcon();
 
-      // Display the generated text in the output section
-      document.getElementById('output').innerText = generatedText;
+    // Get the generated text from the server's response
+    const generatedText = await response.text();
+
+    // Display the generated text in the output section
+    document.getElementById('output').innerText = generatedText;
+  }
+
+  function showLoadingIcon() {
+    document.getElementById('loadingIcon').style.display = 'block';
+  }
+
+  function hideLoadingIcon() {
+    document.getElementById('loadingIcon').style.display = 'none';
   }
 </script>
 
