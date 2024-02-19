@@ -120,9 +120,10 @@
 <!-- ... (other HTML code) ... -->
 
 
-    <div id="output" class="jumbotron"></div>
-</div>
-<script>
+    <div id="output" class="jumbotron"><button type="button" class="btn btn-primary" id="copyButton" onclick="copyOutput()">Copy Text</button></div>
+
+    
+</div><script>
   async function generateText() {
     showLoadingIcon();
     const prompt = document.getElementById('prompt').value;
@@ -156,6 +157,17 @@
 
   function hideLoadingIcon() {
     document.getElementById('loadingIcon').style.display = 'none';
+  }
+
+  function copyOutput() {
+    const outputText = document.getElementById('output').innerText;
+    navigator.clipboard.writeText(outputText)
+      .then(() => {
+        alert('Text copied to clipboard!');
+      })
+      .catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
   }
 </script>
 
